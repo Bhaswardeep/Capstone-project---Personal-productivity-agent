@@ -26,6 +26,13 @@ class UserCreate(UserBase):
     password: str = Field(min_length=1, max_length=255)
 
 
+class UserLogin(BaseModel):
+    """Credentials required to authenticate a user."""
+
+    email: str = Field(min_length=3, max_length=255, pattern=r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+    password: str = Field(min_length=1, max_length=255)
+
+
 class UserUpdate(BaseModel):
     """Fields allowed when updating a user record."""
 
@@ -48,6 +55,13 @@ class UserResponse(UserBase):
     id: int
     created_at: DateTime
     last_login: DateTime | None = None
+
+
+class TokenResponse(BaseModel):
+    """JWT access token response."""
+
+    access_token: str
+    token_type: str = "bearer"
 
 
 class TaskBase(BaseModel):
