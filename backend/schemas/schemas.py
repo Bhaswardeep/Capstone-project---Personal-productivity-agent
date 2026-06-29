@@ -6,7 +6,7 @@ from datetime import date as Date
 from datetime import datetime as DateTime
 from typing import Literal
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, EmailStr, Field, field_validator
 
 Category = Literal["Work", "Learning", "Health", "Personal", "Other"]
 Priority = Literal["Low", "Medium", "High", "Critical"]
@@ -17,7 +17,16 @@ class UserBase(BaseModel):
     """Shared user fields."""
 
     username: str = Field(min_length=1, max_length=100)
-    email: str = Field(min_length=3, max_length=255, pattern=r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+    email: EmailStr = Field(max_length=255)
+
+    @field_validator("email")
+    @classmethod
+    def validate_email_tld(cls, email: EmailStr) -> EmailStr:
+        """Reject email addresses with a one-character top-level domain."""
+        top_level_domain = str(email).rsplit(".", maxsplit=1)[-1]
+        if len(top_level_domain) < 2:
+            raise ValueError("Email top-level domain must be at least two characters.")
+        return email
 
 
 class UserCreate(UserBase):
@@ -29,22 +38,38 @@ class UserCreate(UserBase):
 class UserLogin(BaseModel):
     """Credentials required to authenticate a user."""
 
-    email: str = Field(min_length=3, max_length=255, pattern=r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
+    email: EmailStr = Field(max_length=255)
     password: str = Field(min_length=1, max_length=255)
+
+    @field_validator("email")
+    @classmethod
+    def validate_email_tld(cls, email: EmailStr) -> EmailStr:
+        """Reject email addresses with a one-character top-level domain."""
+        top_level_domain = str(email).rsplit(".", maxsplit=1)[-1]
+        if len(top_level_domain) < 2:
+            raise ValueError("Email top-level domain must be at least two characters.")
+        return email
 
 
 class UserUpdate(BaseModel):
     """Fields allowed when updating a user record."""
 
     username: str | None = Field(default=None, min_length=1, max_length=100)
-    email: str | None = Field(
-        default=None,
-        min_length=3,
-        max_length=255,
-        pattern=r"^[^@\s]+@[^@\s]+\.[^@\s]+$",
-    )
+    email: EmailStr | None = Field(default=None, max_length=255)
     password: str | None = Field(default=None, min_length=1, max_length=255)
     last_login: DateTime | None = None
+
+    @field_validator("email")
+    @classmethod
+    def validate_email_tld(cls, email: EmailStr | None) -> EmailStr | None:
+        """Reject email addresses with a one-character top-level domain."""
+        if email is None:
+            return email
+
+        top_level_domain = str(email).rsplit(".", maxsplit=1)[-1]
+        if len(top_level_domain) < 2:
+            raise ValueError("Email top-level domain must be at least two characters.")
+        return email
 
 
 class UserResponse(UserBase):
