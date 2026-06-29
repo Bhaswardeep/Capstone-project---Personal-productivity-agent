@@ -133,6 +133,10 @@ def render_evening_ai(ai_result: dict) -> None:
 
     st.write(ai_result.get("encouragement", ""))
 
+    provider = ai_result.get("provider")
+    if provider:
+        st.write(f"AI Provider: {provider.upper()}")
+
 
 require_login()
 

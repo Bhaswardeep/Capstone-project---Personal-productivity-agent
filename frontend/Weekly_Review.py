@@ -138,6 +138,10 @@ def render_weekly_ai(ai_result: dict, tasks: list[dict]) -> None:
         else:
             st.write("No category data available.")
 
+    provider = ai_result.get("provider")
+    if provider:
+        st.write(f"AI Provider: {provider.upper()}")
+
 
 require_login()
 

@@ -128,6 +128,10 @@ def render_morning_ai(ai_result: dict) -> None:
     if motivational_advice:
         st.write("Motivational advice:", motivational_advice)
 
+    provider = ai_result.get("provider")
+    if provider:
+        st.write(f"AI Provider: {provider.upper()}")
+
 
 require_login()
 
