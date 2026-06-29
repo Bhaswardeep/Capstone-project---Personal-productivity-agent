@@ -201,3 +201,102 @@ The project is in a valid state for Sprint 3 when:
 ## Notes
 
 This document should remain concise and be updated after every completed sprint.
+
+## Sprint 3 - Frontend Integration & Productivity Workflow
+
+## Objectives
+
+- Build the complete non-AI productivity workflow.
+- Connect the Streamlit frontend with the FastAPI backend.
+- Implement authenticated task management.
+- Implement Morning Check-In and Evening Check-In.
+- Complete end-to-end testing.
+
+## Backend Work Completed
+
+- Implemented authenticated Task CRUD API.
+- Added JWT protection to all task endpoints.
+- Enforced per-user ownership of tasks.
+- Added create, read, update, complete and delete task functionality.
+- Added Morning Check-In backend.
+- Added Evening Check-In backend.
+- Improved backend validation.
+- Added EmailStr validation with custom short-TLD rejection.
+- Improved registration and login validation.
+- Improved task creation behaviour for optional due dates.
+
+## Frontend Work Completed
+
+- Built Register page.
+- Built Login page.
+- Built Tasks page.
+- Built Morning Check-In page.
+- Built Evening Check-In page.
+- Added authenticated navigation.
+- Added logout.
+- Added protected page routing.
+- Added automatic task refresh.
+- Added edit task functionality.
+- Added complete task functionality.
+- Added delete confirmation.
+- Disabled editing/completing already completed tasks.
+- Improved validation messages.
+
+## Bug Fixes
+
+- Fixed Streamlit navigation architecture.
+- Fixed localhost launch issue.
+- Fixed session navigation errors.
+- Fixed due-date creation bug.
+- Fixed duplicate task creation after rerun.
+- Fixed refresh of task table after CRUD operations.
+- Fixed registration flow.
+- Fixed email validation.
+- Improved frontend error handling.
+
+## Testing Performed
+
+Successfully verified:
+
+- User registration
+- Duplicate username rejection
+- Duplicate email rejection
+- Invalid email rejection
+- User login
+- JWT authentication
+- Protected API endpoints
+- Swagger authorization
+- GET /tasks
+- POST /tasks
+- PUT /tasks
+- DELETE /tasks
+- Task creation
+- Task editing
+- Task completion
+- Task deletion
+- Morning Check-In
+- Evening Check-In
+- Logout
+- Data persistence after restart
+- User isolation
+- Password hashing
+- Backend compilation
+- Frontend compilation
+
+## Result
+
+Sprint 3 completed successfully.
+
+The application now provides a complete authenticated productivity management system consisting of:
+
+- Authentication
+- User management
+- Task management
+- Morning planning
+- Evening reflection
+- Secure backend APIs
+- Persistent SQLite database
+- Streamlit frontend
+- Swagger API testing
+
+The project is now ready for Sprint 4, which will introduce LangGraph, AI agents, productivity coaching, dashboard analytics and intelligent weekly reviews.
