@@ -107,7 +107,7 @@ if submitted:
                 token_data = response.json()
                 st.session_state["access_token"] = token_data["access_token"]
                 load_current_user()
-                st.session_state["redirect_to"] = "Tasks"
+                st.session_state["redirect_to"] = "Dashboard"
                 st.success("Login successful.")
                 st.rerun()
             else:

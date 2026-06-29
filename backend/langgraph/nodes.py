@@ -108,14 +108,22 @@ def _generate_evening_summary(state: ProductivityGraphState) -> ProductivityGrap
     completed = state.get("completed_tasks", [])
     pending = state.get("pending_tasks", [])
     notes = state.get("evening_notes")
+    wins = state.get("wins")
+    challenges = state.get("challenges")
 
     summary = (
         f"You completed {len(completed)} task(s) and have {len(pending)} task(s) still pending."
     )
     if notes:
         summary = f"{summary} Your reflection notes mention: {notes}"
+    if wins:
+        summary = f"{summary} Wins from the day: {wins}"
+    if challenges:
+        summary = f"{summary} Challenges to account for: {challenges}"
 
     achievements = [task.get("title", "Completed task") for task in completed[:5]]
+    if wins:
+        achievements.append(wins)
     if not achievements:
         achievements = ["You completed the reflection loop and kept your task list honest."]
 

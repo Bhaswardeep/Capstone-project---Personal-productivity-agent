@@ -57,6 +57,8 @@ class EveningSummaryRequest(BaseModel):
     completed_tasks: list[AITask]
     pending_tasks: list[AITask]
     evening_notes: str | None = None
+    wins: str | None = None
+    challenges: str | None = None
 
 
 class WeeklyReviewRequest(BaseModel):
@@ -91,6 +93,8 @@ def create_evening_summary(
         completed_tasks=[task.model_dump() for task in request.completed_tasks],
         pending_tasks=[task.model_dump() for task in request.pending_tasks],
         evening_notes=request.evening_notes,
+        wins=request.wins,
+        challenges=request.challenges,
         user_id=current_user.id,
     )
 

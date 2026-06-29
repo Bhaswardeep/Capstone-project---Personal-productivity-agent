@@ -54,6 +54,8 @@ class ProductivityGraphState(TypedDict, total=False):
     daily_logs: list[DailyLogState]
     morning_notes: str | None
     evening_notes: str | None
+    wins: str | None
+    challenges: str | None
     classifications: list[ClassificationState]
     prioritized_plan: list[str]
     suggested_order: list[str]

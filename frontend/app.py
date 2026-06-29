@@ -13,9 +13,11 @@ PUBLIC_PAGES = {
 }
 
 PROTECTED_PAGES = {
+    "Dashboard": "Dashboard.py",
     "Tasks": "Tasks.py",
     "Morning Check-In": "Morning_Checkin.py",
     "Evening Check-In": "Evening_Checkin.py",
+    "Weekly Review": "Weekly_Review.py",
 }
 
 
@@ -69,7 +71,7 @@ def select_public_page() -> str:
 def select_protected_page() -> str:
     """Render navigation for authenticated users."""
     if st.session_state.get("nav_page") not in PROTECTED_PAGES:
-        st.session_state["nav_page"] = "Tasks"
+        st.session_state["nav_page"] = "Dashboard"
     if st.session_state.get("protected_nav") not in PROTECTED_PAGES:
         st.session_state["protected_nav"] = st.session_state["nav_page"]
 

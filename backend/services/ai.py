@@ -44,6 +44,8 @@ def generate_evening_summary(
     completed_tasks: list[dict[str, Any] | Task],
     pending_tasks: list[dict[str, Any] | Task],
     evening_notes: str | None = None,
+    wins: str | None = None,
+    challenges: str | None = None,
     user_id: int | None = None,
 ) -> dict[str, Any]:
     """Generate an evening reflection and tomorrow recommendations."""
@@ -53,6 +55,8 @@ def generate_evening_summary(
         "completed_tasks": [_serialize_task(task) for task in completed_tasks],
         "pending_tasks": [_serialize_task(task) for task in pending_tasks],
         "evening_notes": evening_notes,
+        "wins": wins,
+        "challenges": challenges,
         "metadata": _provider_metadata(),
     }
     result = get_productivity_graph().invoke(state)

@@ -102,7 +102,7 @@ if tasks:
     st.dataframe(
         [
             {
-                "ID": task["id"],
+                "S.No": index,
                 "Title": task["title"],
                 "Priority": task["priority"],
                 "Status": task["status"],
@@ -110,7 +110,7 @@ if tasks:
                 "Category": task["category"],
                 "Estimated Minutes": task.get("estimated_minutes") or "",
             }
-            for task in tasks
+            for index, task in enumerate(tasks, start=1)
         ],
         width="stretch",
         hide_index=True,
@@ -187,8 +187,11 @@ if create_submitted:
             st.error(friendly_api_error(response, "Could not create task."))
 
 if tasks:
-    st.subheader("Task Details")
-    task_options = {f"{task['id']} - {task['title']}": task for task in tasks}
+    st.subheader("Edit Task")
+    task_options = {
+        f"{index} - {task['title']}": task
+        for index, task in enumerate(tasks, start=1)
+    }
     selected_label = st.selectbox("Choose Task", list(task_options.keys()))
     selected_task = task_options[selected_label]
     is_completed = selected_task["status"] == "Completed"
@@ -203,6 +206,21 @@ if tasks:
         st.write(f"Due Date: {selected_task.get('due_date') or 'None'}")
         st.write(f"Estimated Minutes: {selected_task.get('estimated_minutes') or 'None'}")
     else:
+        edit_has_due_date = st.checkbox(
+            "Use due date",
+            value=bool(selected_task.get("due_date")),
+            key=f"edit_has_due_date_{selected_task['id']}",
+        )
+        edit_due_date = None
+        if edit_has_due_date:
+            edit_due_date = st.date_input(
+                "Due Date",
+                value=date.fromisoformat(selected_task["due_date"])
+                if selected_task.get("due_date")
+                else date.today(),
+                key=f"edit_due_date_{selected_task['id']}",
+            )
+
         with st.form(f"edit_task_form_{selected_task['id']}"):
             edit_title = st.text_input("Title", value=selected_task["title"])
             edit_description = st.text_area(
@@ -229,20 +247,6 @@ if tasks:
                 min_value=0,
                 step=15,
                 value=selected_task.get("estimated_minutes") or 0,
-            )
-            edit_has_due_date = st.checkbox(
-                "Use due date",
-                value=bool(selected_task.get("due_date")),
-            )
-            edit_due_date = (
-                st.date_input(
-                    "Due Date",
-                    value=date.fromisoformat(selected_task["due_date"])
-                    if selected_task.get("due_date")
-                    else date.today(),
-                )
-                if edit_has_due_date
-                else None
             )
             update_submitted = st.form_submit_button("Save Changes")
 
