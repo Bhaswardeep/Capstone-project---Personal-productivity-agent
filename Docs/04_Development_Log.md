@@ -14,7 +14,7 @@ Incremental Sprint Development
 
 ## Current Sprint
 
-Sprint 4B - Frontend AI Integration
+Sprint 5 - Next Development Sprint
 
 Status: Ready to Start
 
@@ -27,15 +27,14 @@ Status: Ready to Start
 | 2 | JWT Authentication | Completed |
 | 3 | Frontend Integration & Productivity Workflow | Completed |
 | 4A | AI Backend Foundation | Completed |
-| 4B | Frontend AI Integration | Next |
+| 4B | Frontend AI Integration | Completed |
 | 4 | Streamlit Frontend & Navigation | Completed |
-| 5 | Morning Check-In | Not Started |
-| 6 | Evening Check-In | Not Started |
-| 7 | LangGraph AI Workflow | Not Started |
-| 8 | Dashboard | Not Started |
-| 9 | Weekly Review | Not Started |
-| 10 | Testing & Bug Fixes | Not Started |
-| 11 | Deployment & Submission | Not Started |
+| 5 | Evening Check-In | Completed |
+| 6 | LangGraph AI Workflow | Not Started |
+| 7 | Dashboard | Completed |
+| 8 | Weekly Review | Completed |
+| 9 | Testing & Bug Fixes | Not Started |
+| 10 | Deployment & Submission | Not Started |
 
 ## Sprint 0.5 Summary
 
@@ -374,6 +373,75 @@ The application now includes a complete backend AI foundation consisting of:
 
 The project is now ready for Sprint 4B, which will integrate the AI backend with the Streamlit frontend.
 
+## Sprint 4B - Frontend AI Integration
+
+## Objective
+
+Integrate the existing AI backend from Sprint 4A into the Streamlit frontend so users can interact with AI-generated productivity insights.
+
+## Work Completed
+
+- Added a Dashboard page as the default authenticated landing page.
+- Integrated the `/dashboard` backend endpoint into the frontend.
+- Updated authenticated navigation order:
+  - Dashboard
+  - Tasks
+  - Morning Check-In
+  - Evening Check-In
+  - Weekly Review
+- Connected Morning Check-In to the `/ai/morning-plan` endpoint.
+- Connected Evening Check-In to the `/ai/evening-summary` endpoint.
+- Connected Weekly Review to the `/ai/weekly-review` endpoint.
+- Displayed AI-generated Morning Plans, Evening Summaries, and Weekly Reviews inside the Streamlit UI.
+- Added dashboard statistics including:
+  - Tasks Due Today
+  - Pending Tasks
+  - Completed Today
+  - Completion Percentage
+  - Estimated Minutes
+  - Overdue Tasks
+  - High Priority Tasks
+- Improved task numbering by displaying per-user serial numbers (S.No.) instead of exposing database IDs.
+- Fixed due-date handling for task editing so the date picker appears correctly before saving.
+- Enhanced Evening AI context so Wins and Challenges are included in AI summaries.
+- Renamed the task editing section from "Task Details" to "Edit Task" for clarity.
+
+## Testing Performed
+
+Successfully verified:
+
+- Dashboard statistics update correctly.
+- Dashboard resets correctly on a new calendar day.
+- Morning Check-In saves successfully.
+- AI Morning Plan generates successfully.
+- Evening Check-In saves successfully.
+- AI Evening Summary generates successfully.
+- Weekly Review generates successfully.
+- Task CRUD functionality still works.
+- Authentication still works.
+- Swagger endpoints tested:
+  - `/dashboard`
+  - `/ai/morning-plan`
+  - `/ai/evening-summary`
+  - `/ai/weekly-review`
+- Backend disconnect correctly produces a frontend connection error.
+- Browser refresh logs out the user, which is expected because authentication currently relies on Streamlit session state.
+
+## Known Limitations
+
+- AI responses currently use deterministic mock mode rather than a live LLM.
+- Browser refresh clears authentication because JWT tokens are stored only in Streamlit session state.
+- Dashboard and daily check-ins intentionally reset each day because they are date-based views.
+- Database task IDs continue to increment globally, while the frontend displays user-friendly serial numbers.
+
+## Outcome
+
+Sprint 4B completed successfully.
+
+All planned Sprint 4B functionality was implemented and verified.
+
+The project is now ready to begin Sprint 5.
+
 ## Project Status Summary
 
 Completed:
@@ -382,7 +450,8 @@ Completed:
 - Sprint 2
 - Sprint 3
 - Sprint 4A
+- Sprint 4B
 
 Next:
 
-- Sprint 4B - Frontend AI Integration
+- Sprint 5
