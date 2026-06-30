@@ -6,7 +6,11 @@ import re
 import requests
 import streamlit as st
 
-API_URL = os.getenv("API_URL", "http://127.0.0.1:8000")
+# API_URL = os.getenv("API_URL", "http://127.0.0.1:8000")
+API_URL = os.getenv(
+    "API_URL",
+    "https://personal-productivity-agent-with-groq-ai.onrender.com",
+)
 
 
 def is_valid_email(email: str) -> bool:
