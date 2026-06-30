@@ -96,6 +96,17 @@ Create a local `.env` file from `.env.example` and configure the required values
 - `GROQ_MODEL`: Groq model name used by the AI service.
 - `GROQ_TIMEOUT_SECONDS`: Timeout for Groq requests before falling back to mock AI.
 
+## Database Schema
+
+The database schema is implemented using SQLAlchemy ORM.
+
+The complete schema can be found here:
+
+- backend/models/models.py
+
+GitHub link:
+https://github.com/Bhaswardeep/Capstone-project---Personal-productivity-agent/blob/master/backend/models/models.py
+
 ## API Documentation
 
 FastAPI provides Swagger documentation automatically after the backend starts:
