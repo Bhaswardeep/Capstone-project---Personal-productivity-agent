@@ -115,7 +115,7 @@ The frontend can be deployed on Streamlit Community Cloud.
 
 Groq works in cloud deployment by setting the required environment variables in the hosting platform. The deployed application does not depend on a locally running Ollama instance and continues to work when the developer's machine is offline.
 
-## Screenshots
+<!-- ## Screenshots
 
 ### Dashboard
 
@@ -127,16 +127,16 @@ Groq works in cloud deployment by setting the required environment variables in 
 
 ### Weekly Review
 
-### Swagger
+### Swagger -->
 
-## Future Improvements
+<!-- ## Future Improvements
 
 - Google Calendar integration
 - Notifications
 - Email reminders
 - User analytics
 - Multiple AI providers
-- Export reports
+- Export reports -->
 
 ## License
 
