@@ -2,6 +2,17 @@
 
 Personal Productivity Agent is an AI-powered productivity application for planning daily work, managing tasks, reviewing progress, and generating intelligent productivity insights. It combines a FastAPI backend, Streamlit frontend, SQLite persistence, LangGraph workflow orchestration, and Groq-hosted LLM responses with automatic mock fallback.
 
+## Live Demo
+
+Frontend (Streamlit):
+https://life-manager.streamlit.app/
+
+Backend API:
+https://personal-productivZity-agent-with-groq-ai.onrender.com/
+
+Swagger Documentation:
+https://personal-productivity-agent-with-groq-ai.onrender.com/docs
+
 ## Features
 
 - JWT Authentication
@@ -89,9 +100,11 @@ Create a local `.env` file from `.env.example` and configure the required values
 
 FastAPI provides Swagger documentation automatically after the backend starts:
 
-```text
+Local:
 http://127.0.0.1:8000/docs
-```
+
+Production:
+https://personal-productivity-agent-with-groq-ai.onrender.com/docs
 
 Use Swagger to inspect and test authentication, task, dashboard, check-in, and AI endpoints.
 
@@ -109,11 +122,16 @@ The frontend sends requests to FastAPI. The backend routes AI workflows through 
 
 ## Deployment
 
-The backend can be deployed on Render.
+Backend:
+- Render
 
-The frontend can be deployed on Streamlit Community Cloud.
+Frontend:
+- Streamlit Community Cloud
 
-Groq works in cloud deployment by setting the required environment variables in the hosting platform. The deployed application does not depend on a locally running Ollama instance and continues to work when the developer's machine is offline.
+AI Provider:
+- Groq API (llama-3.1-8b-instant)
+
+If the Groq API is unavailable or the API key is missing, the application automatically falls back to the deterministic mock AI provider, ensuring uninterrupted functionality.
 
 <!-- ## Screenshots
 

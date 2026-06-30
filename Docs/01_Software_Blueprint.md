@@ -196,15 +196,32 @@ Groq/OpenAI/Ollama compatible
 
 One persistent thread per user 
 
-## Deployment 
+## Final Deployment Architecture
 
-Frontend 
+Frontend
+Streamlit Community Cloud
 
-Streamlit Community Cloud 
+↓
 
-Backend 
+HTTPS
 
-Render 
+↓
+
+FastAPI Backend (Render)
+
+↓
+
+LangGraph Workflow
+
+↓
+
+Groq API
+
+↓
+
+SQLite Database
+
+The production deployment follows the planned architecture without modification.
 
 ## 7. Overall System Architecture 
 
